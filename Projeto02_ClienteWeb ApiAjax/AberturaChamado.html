@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Novo chamado</h1>
+    <div>
+        <div>
+            <label>Data</label>
+            <input type="date" pattern="yyy-MM-dd" name="name" id="data" value="" placeholder="Data de abertura do chamado" />
+        </div>
+
+        <div>
+            <label>Cpf</label>
+            <input type="text" name="name" id="cpf" value="" placeholder="CPF do solicitante" />
+        </div>
+
+        <div>
+            <label>Assunto</label>
+            <select id="assunto">
+                <option value="Sugestao">Sugestão</option>
+                <option value="Reclamacao">Reclamação</option>
+                <option value="Elogio">Elogio</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Descrição</label>
+            <textarea id="descricao" rows="5" cols="20" placeholder="Descrição do chamado"></textarea>
+        </div>
+
+        <input type="button" name="name" value="Abrir Chamado" id="incluirChamado" />
+    </div>
+
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+
+        console.log($('#cpf').val());
+
+        $(document).ready(function () {
+            $('#incluirChamado').click(function () {
+                $.ajax({
+                    url: 'http://localhost:49865/api/chamados/',
+                    method: 'POST',
+                    data: {
+                        Data: $('#data').val(),
+                        CpfCliente: $('#cpf').val(),
+                        Assunto: $('#assunto').val(),
+                        Descricao: $('#descricao').val()
+                    },
+                    success: function (resposta) {
+                        alert('Dados Inseridos');
+                    },
+                    error: function (erro) {
+                        alert('Erro : ' + erro.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

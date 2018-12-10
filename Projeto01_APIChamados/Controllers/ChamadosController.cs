@@ -7,9 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Projeto01_APIChamados.Controllers
 {
+    //no origin pode colocar https://www.itau.com.br/ por exemplo se for
+    //SÓ o itau que for usar a API
+    [EnableCors (origins:"*",methods:"GET,POST",headers:"*")]
     public class ChamadosController : ApiController
     {
         /*ESTE ARQUIVO ESTA SENDO USADO POR UM PROJETO CHAAMDO *Projeto03_Chamados* no topico_clienteWebApi no modulo 8*/
